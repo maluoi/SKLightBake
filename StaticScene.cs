@@ -15,9 +15,15 @@ namespace StereoKit.Framework
 				if (node.Mesh == null) continue;
 				
 				string name = node.Name;
-				AddMesh(node.Mesh, node.Material, node.ModelTransform * at,
-					name.Contains("[invisible]" ) == false,
-					name.Contains("[intangible]") == false);
+
+				bool visible = 
+					name.Contains("[invisible]") == false ||
+					(node.Info.Contains("visible") && node.Info["visible"] == "true");
+				bool solid = 
+					name.Contains("[intangible]") == false ||
+					(node.Info.Contains("solid") && node.Info["solid"] == "true");
+
+				AddMesh(node.Mesh, node.Material, node.ModelTransform * at, visible, solid);
 			}
 		}
 
