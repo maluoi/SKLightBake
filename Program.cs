@@ -19,12 +19,7 @@ class Program
 	static void Main(string[] args)
 	{
 		// Initialize StereoKit
-		SKSettings settings = new SKSettings
-		{
-			appName      = "SKLightBake",
-			assetsFolder = "Assets",
-		};
-		if (!SK.Initialize(settings))
+		if (!SK.Initialize())
 			Environment.Exit(1);
 
 		floorMesh   = Mesh.GeneratePlane(V.XY(10, 10), 20);
